@@ -12,7 +12,7 @@ Resources:
     Properties:
       GroupDescription: !Sub 'Group of SageMaker notebook instances of ${AWS::StackName}'
       GroupName: !Sub ${AWS::StackName}-sg
-      VpcId: !ImportValue infra-vpc-VpcId
+      VpcId: vpc-044f9e0887e934e14
       Tags:
         - { Key: Name, Value: !Sub '${AWS::StackName}-notebook-sg' }
 

@@ -1,9 +1,8 @@
 # Some defaults
 AWS ?= aws
-AWS_REGION ?= eu-west-1
-AWS_PROFILE ?= default
+AWS_REGION ?= us-east-1
 
-AWS_CMD := $(AWS) --profile $(AWS_PROFILE) --region $(AWS_REGION)
+AWS_CMD := $(AWS) --region $(AWS_REGION)
 
 DEPLOYMENT_NAME ?= default
 TAGS ?= Key=DeploymentName,Value=$(DEPLOYMENT_NAME)
