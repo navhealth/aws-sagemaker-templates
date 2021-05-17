@@ -48,7 +48,7 @@ Resources:
     Type: "AWS::SageMaker::NotebookInstance"
     Properties:
       DirectInternetAccess: Enabled
-      SubnetId: !ImportValue infra-vpc-sn-adhoc-a
+      SubnetId: subnet-052cd77bfd8cec71f
       NotebookInstanceName: !Sub '${AWS::StackName}'
       InstanceType: !Ref InstanceType
       SecurityGroupIds:
@@ -57,3 +57,4 @@ Resources:
         Fn::ImportValue: !Sub 'sagemaker-${DeploymentName}-iam-notebook-role-arn'
       Tags:
         - { Key: Name, Value: !Sub '${AWS::StackName}' }
+        - { Key: DeploymentName, Value: !Ref DeploymentName }
