@@ -4,10 +4,13 @@ AWS_REGION ?= us-east-1
 
 AWS_CMD := $(AWS) --region $(AWS_REGION)
 
+NAME ?= user
 DEPLOYMENT_NAME ?= DataScience
+INSTANCE_TYPE ?= ml.t3.large
 TAGS ?= Key=DeploymentName,Value=$(DEPLOYMENT_NAME)
 PARAMETERS ?= \
-	ParameterKey=DeploymentName,ParameterValue=$(DEPLOYMENT_NAME)
+	ParameterKey=DeploymentName,ParameterValue=$(DEPLOYMENT_NAME) \
+	ParameterKey=InstanceType,ParameterValue=$(INSTANCE_TYPE)
 
 # A helper to turn template file name to stack name. It does the following:
 # - Strip white spaces introduced in function call
@@ -19,7 +22,7 @@ PARAMETERS ?= \
 # - sagemaker-$(DEPLOYMENT_NAME)-infra
 # - sagemaker-$(DEPLOYMENT_NAME)-notebook-instance-$(USER)
 define tmpl2name
-	sagemaker-$(DEPLOYMENT_NAME)-$(subst notebook-instance,notebook-instance-$(USER),$(subst sagemaker-,,$(strip $(1))))
+	sagemaker-$(DEPLOYMENT_NAME)-$(subst notebook-instance,notebook-instance-$(NAME),$(subst sagemaker-,,$(strip $(1))))
 endef
 
 define stack_template =
